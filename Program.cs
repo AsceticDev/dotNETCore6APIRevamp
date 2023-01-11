@@ -11,12 +11,11 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Services.AddAuthJwt(builder);
-
+builder.AddAuthJwt();
 // Add services to the container.
 builder.Services.RegisterServices();
 //Db Stuff
-builder.Services.ConfigureDatabase(builder);
+builder.ConfigureDatabase();
 //Identity
 builder.Services.ConfigureIdentity();
 
@@ -25,7 +24,12 @@ builder.Services.ConfigureIdentity();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-app.ConfigureSwagger();
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
 
 app.UseHttpsRedirection();
 

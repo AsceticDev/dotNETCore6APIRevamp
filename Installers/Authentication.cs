@@ -6,10 +6,10 @@ namespace dotNETCoreAPIRevamp.Installers
 {
     public static class Authentication
     {
-        public static IServiceCollection AddAuthJwt(this IServiceCollection services, WebApplicationBuilder builder)
+        public static WebApplicationBuilder AddAuthJwt(this WebApplicationBuilder builder)
         {
             //AUTHENTICATION
-            services.AddAuthentication(options =>
+            builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -28,7 +28,7 @@ namespace dotNETCoreAPIRevamp.Installers
                 };
             });
 
-            return services;
+            return builder;
         }
     }
 }
