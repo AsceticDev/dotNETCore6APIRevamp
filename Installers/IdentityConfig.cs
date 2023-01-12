@@ -1,4 +1,5 @@
 ﻿using dotNETCoreAPIRevamp.Data;
+using dotNETCoreAPIRevamp.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace dotNETCoreAPIRevamp.Installers
@@ -7,12 +8,12 @@ namespace dotNETCoreAPIRevamp.Installers
     {
         public static IServiceCollection ConfigureIdentity(this IServiceCollection services)
         {
-            //Identity
+            //Add Identity Framework Core
 
-            services.AddDefaultIdentity<IdentityUser>(options =>
-                options.SignIn.RequireConfirmedAccount = true)
-                .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<DataContext>();
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<DataContext>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(options =>
             {

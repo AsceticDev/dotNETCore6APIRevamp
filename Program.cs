@@ -10,7 +10,6 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 builder.AddAuthJwt();
 // Add services to the container.
 builder.Services.RegisterServices();
@@ -18,6 +17,8 @@ builder.Services.RegisterServices();
 builder.ConfigureDatabase();
 //Identity
 builder.Services.ConfigureIdentity();
+//Swagger
+builder.Services.ConfigureSwagger();
 
 
 

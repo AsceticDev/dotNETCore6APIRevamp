@@ -2,9 +2,9 @@
 {
     public class AuthenticationResult
     {
-        public string Token { get; set; }
-        public bool Success { get; set; }
+        public string Token { get; set; } = String.Empty;
+        public bool Success { get; set; } = false;
 
-        public IEnumerable<string> Error { get; set; }
+        public IEnumerable<string> Errors { get; set; } = Enumerable.Empty<string>();
     }
 }
