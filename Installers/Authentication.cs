@@ -15,6 +15,22 @@ namespace dotNETCoreAPIRevamp.Installers
             builder.Configuration.Bind("Jwt", jwtSettings);
             builder.Services.AddSingleton(jwtSettings);
 
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidIssuer = jwtSettings.Issuer,
+                ValidAudience = jwtSettings.Audience,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key)),
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                ClockSkew = Debugger.IsAttached ? TimeSpan.Zero : TimeSpan.FromMinutes(10)
+                //ClockSkew = TimeSpan.Zero,
+            };
+
+            builder.Services.AddSingleton(tokenValidationParameters);
+
+
             //AUTHENTICATION
             builder.Services.AddAuthentication(options =>
             {
@@ -26,18 +42,10 @@ namespace dotNETCoreAPIRevamp.Installers
                 o.SaveToken = true;
                 //The MetadataAddress or Authority must use HTTPS unless disabled for development
                 o.RequireHttpsMetadata = false;
-                o.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidIssuer = jwtSettings.Issuer,
-                    ValidAudience = jwtSettings.Audience,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key)),
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ClockSkew = Debugger.IsAttached ? TimeSpan.Zero : TimeSpan.FromMinutes(10)
-                };
+                o.TokenValidationParameters = tokenValidationParameters;
             });
+
+            builder.Services.AddAuthorization();
 
             return builder;
         }

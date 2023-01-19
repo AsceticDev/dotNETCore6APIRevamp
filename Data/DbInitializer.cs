@@ -18,7 +18,7 @@ namespace dotNETCoreAPIRevamp.Data
                 a.HasData(new Post
                 {
                     Id = 0,
-                    Name = "shiva"
+                    Title = "shiva"
                 });
 
             });
@@ -28,7 +28,7 @@ namespace dotNETCoreAPIRevamp.Data
                 a.HasData(new Post
                 {
                     Id = 1,
-                    Name = "bhairava"
+                    Title = "bhairava"
                 });
             });
 
@@ -37,7 +37,7 @@ namespace dotNETCoreAPIRevamp.Data
                 a.HasData(new Post
                 {
                     Id = 2,
-                    Name = "Shamshaan Ghat"
+                    Title = "Shamshaan"
                 });
             });
 
@@ -46,7 +46,7 @@ namespace dotNETCoreAPIRevamp.Data
                 a.HasData(new Post
                 {
                     Id = 3,
-                    Name = "bhang"
+                    Title = "Bhang"
                 });
             });
 
@@ -55,7 +55,7 @@ namespace dotNETCoreAPIRevamp.Data
                 a.HasData(new Post
                 {
                     Id = 4,
-                    Name = "prasad"
+                    Title = "Prasad"
                 });
             });
 

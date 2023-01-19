@@ -10,7 +10,7 @@ namespace dotNETCoreAPIRevamp.Installers
         {
             //Add Identity Framework Core
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<AppUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<DataContext>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();

@@ -4,5 +4,6 @@
     {
         public string? Token { get; set; }
         //verify email after registration request
+        public string? RefreshToken { get; set; }
     }
 }

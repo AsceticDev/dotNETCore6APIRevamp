@@ -10,6 +10,7 @@ namespace dotNETCoreAPIRevamp.Installers
             services.AddAuthorization();
             services.AddControllers();
             services.AddEndpointsApiExplorer();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
           
             //Scope
